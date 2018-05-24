@@ -1,0 +1,33 @@
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+import numpy as np
+
+if __name__ == '__main__':
+    x = np.linspace(norm.ppf(0.01), norm.ppf(0.99), num=1000)
+    y1 = norm.pdf(x)
+    plt.figure('PDF')
+    plt.xlim(x.min()-.1, x.max()+0.1)
+    plt.ylim(y1.min(), y1.max()+0.01)
+    plt.xlabel('x')
+    plt.ylabel('Probability Density')
+    plt.title('Normal PDF')
+    plt.scatter(x, y1, c=x, cmap='jet')
+    plt.fill_between(x, y1, color='thistle')
+    plt.savefig('Figure 2-7. Normal Probability Density Function Visualization.jpeg')
+    plt.close('PDF')
+    plt.figure('CDF')
+    plt.xlabel('x')
+    plt.ylabel('Probability')
+    plt.title('Normal CDF')
+    y2 = norm.cdf(x)
+    plt.scatter(x, y2, c=x, cmap='jet')
+    plt.savefig('Figure 2-8. Normal Cumulative Distribution Function Visualization.jpeg')
+    plt.close('CDF')
+    plt.figure('ICDF')
+    plt.xlabel('Probability')
+    plt.ylabel('x')
+    plt.title('Normal ICDF (PPF)')
+    y3 = norm.ppf(x)
+    plt.scatter(x, y3, c=x, cmap='jet')
+    plt.savefig('Figure 2-9. Normal Inverse Cumulative Distribution Function Visualization.jpeg')
+    plt.close('ICDF')
